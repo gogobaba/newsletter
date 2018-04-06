@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(logger('dev'));
 
-//1fe0599152eefc946b6d87119e781317-us18
-//https://us18.api.mailchimp.com/3.0/lists/b55981c827/members
+
 
 app.get('/',(req,res)=>{
     res.render('main/home');
@@ -31,12 +30,12 @@ app.post('/',(req,res)=>{
 function addEmailtomailchimp(email){
     var options = {
         method: 'POST',
-        url: 'https://us18.api.mailchimp.com/3.0/lists/b55981c827/members',
+        url: 'https://us18.api.mailchimp.com/3.0/lists/{id}/members',
         headers:
             {
-                'Postman-Token': 'aecd218f-155e-4569-b7b9-2bda8192155c',
+                'Postman-Token': 'token',//add token
                 'Cache-Control': 'no-cache',
-                Authorization: 'Basic YW55c3RyaW5nOjFmZTA1OTkxNTJlZWZjOTQ2YjZkODcxMTllNzgxMzE3LXVzMTg=',
+                Authorization: 'Basic {apikey}',
                 'Content-Type': 'application/json'
             },
         body: { email_address: email , status: 'subscribed' },
